@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="CRUDProductos.BA/CRUDProductos.BA.csproj" />
+  <Project Path="CRUDProductos.FE/CRUDProductos.FE.csproj" />
+</Solution>
