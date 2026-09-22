@@ -7,7 +7,7 @@ namespace CRUDProductos.BA
     public class Productos
     {
         public Producto[] Lista { get; set; } = new Producto[10];
-
+        
         private int UltimoRegistroCargado = -1;
 
         public void Agregar(Producto producto)
@@ -21,9 +21,23 @@ namespace CRUDProductos.BA
         public string Listar()
         {
             string listado = "";
-            for (int i = 0; i <= UltimoRegistroCargado; i++)
+            //for (int i = 0; i <= UltimoRegistroCargado; i++)
+            //{
+            //    listado = listado + Lista[i].Codigo + " - " + Lista[i].Nombre + "\n";
+            //}
+
+            foreach (Producto producto in Lista)
             {
-                listado = listado + Lista[i].Renglon() + "\n";
+                if (producto != null)
+                {
+                    listado = listado 
+                        + producto.Codigo 
+                        + " - " 
+                        + producto.Nombre
+                        + " - "
+                        + producto.Cantidad.ToString()
+                        + "\n";
+                }
             }
 
             return listado;
