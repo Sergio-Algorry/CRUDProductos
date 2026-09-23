@@ -42,5 +42,42 @@ namespace CRUDProductos.BA
 
             return listado;
         }
+
+        public int BuscarPorCodigo(string codigo)
+        {
+            int posicion = -1;
+
+            //foreach (Producto item in Lista)
+            //{
+            //    if (item != null && item.Codigo == codigo)
+            //    {
+            //        posicion = Array.IndexOf(Lista, item);
+            //        break;
+            //    }
+            //}
+
+            for (int i = 0; i <= UltimoRegistroCargado; i++)
+            {
+                if (Lista != null)
+                {
+                    if (Lista[i].Codigo == codigo)
+                    {
+                        posicion = i;
+                        break;
+                    }
+                }
+            }
+
+            return posicion;
+        }
+
+        public void Eliminar(int posicion)
+        {
+            for (int i = posicion+1; i <= UltimoRegistroCargado; i++)
+            {
+                Lista[i-1] = Lista[i];
+            }
+            Lista[UltimoRegistroCargado] = null;
+        }
     }
 }

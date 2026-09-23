@@ -38,6 +38,10 @@
             lblCantidad = new Label();
             btAgregar = new Button();
             lblSalida = new Label();
+            btListar = new Button();
+            btLimpiar = new Button();
+            btBuscar = new Button();
+            btEliminar = new Button();
             SuspendLayout();
             // 
             // lblCodigo
@@ -123,11 +127,59 @@
             lblSalida.Size = new Size(0, 20);
             lblSalida.TabIndex = 9;
             // 
+            // btListar
+            // 
+            btListar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btListar.Location = new Point(324, 93);
+            btListar.Name = "btListar";
+            btListar.Size = new Size(94, 29);
+            btListar.TabIndex = 10;
+            btListar.Text = "Listar";
+            btListar.UseVisualStyleBackColor = true;
+            btListar.Click += btListar_Click;
+            // 
+            // btLimpiar
+            // 
+            btLimpiar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btLimpiar.Location = new Point(530, 93);
+            btLimpiar.Name = "btLimpiar";
+            btLimpiar.Size = new Size(94, 29);
+            btLimpiar.TabIndex = 11;
+            btLimpiar.Text = "Limpiar";
+            btLimpiar.UseVisualStyleBackColor = true;
+            btLimpiar.Click += btLimpiar_Click;
+            // 
+            // btBuscar
+            // 
+            btBuscar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btBuscar.Location = new Point(424, 93);
+            btBuscar.Name = "btBuscar";
+            btBuscar.Size = new Size(94, 29);
+            btBuscar.TabIndex = 12;
+            btBuscar.Text = "Buscar";
+            btBuscar.UseVisualStyleBackColor = true;
+            btBuscar.Click += btBuscar_Click;
+            // 
+            // btEliminar
+            // 
+            btEliminar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btEliminar.Location = new Point(112, 93);
+            btEliminar.Name = "btEliminar";
+            btEliminar.Size = new Size(94, 29);
+            btEliminar.TabIndex = 13;
+            btEliminar.Text = "Eliminar";
+            btEliminar.UseVisualStyleBackColor = true;
+            btEliminar.Click += btEliminar_Click;
+            // 
             // frmCRUDProductos
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(640, 450);
+            Controls.Add(btEliminar);
+            Controls.Add(btBuscar);
+            Controls.Add(btLimpiar);
+            Controls.Add(btListar);
             Controls.Add(lblSalida);
             Controls.Add(btAgregar);
             Controls.Add(txtCantidad);
@@ -156,5 +208,9 @@
         private Label lblCantidad;
         private Button btAgregar;
         private Label lblSalida;
+        private Button btListar;
+        private Button btLimpiar;
+        private Button btBuscar;
+        private Button btEliminar;
     }
 }

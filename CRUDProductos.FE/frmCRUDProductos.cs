@@ -1,4 +1,5 @@
 using CRUDProductos.BA;
+using Microsoft.VisualBasic;
 
 namespace CRUDProductos.FE
 {
@@ -20,6 +21,70 @@ namespace CRUDProductos.FE
             listaProductos.Agregar(producto);
 
             lblSalida.Text = listaProductos.Listar();
+        }
+
+        private void btListar_Click(object sender, EventArgs e)
+        {
+            lblSalida.Text = listaProductos.Listar();
+        }
+
+        private void btLimpiar_Click(object sender, EventArgs e)
+        {
+            txtCantidad.Text = "";
+            txtCodigo.Text = "";
+            txtNombre.Clear();
+            txtPrecio.Clear();
+
+            lblSalida.Text = "";
+        }
+
+        private void btBuscar_Click(object sender, EventArgs e)
+        {
+            BuscarPorCodigo();
+        }
+
+        private void btEliminar_Click(object sender, EventArgs e)
+        {
+            int posicion = BuscarPorCodigo();
+            string mensaje = "¿Está seguro que desea eliminar el producto con código: " 
+                               + listaProductos.Lista[posicion].Codigo
+                               + "-"
+                               + listaProductos.Lista[posicion].Nombre
+                               + "?";
+            DialogResult resultado = MessageBox.Show(mensaje, 
+                            "Eliminar producto", 
+                            MessageBoxButtons.YesNo);
+
+            if (resultado == DialogResult.Yes)
+            {
+                listaProductos.Eliminar(posicion);
+                lblSalida.Text = "Producto eliminado correctamente";
+            }
+        }
+
+        private int BuscarPorCodigo()
+        {
+            int posicion = -1;
+            if (txtCodigo.Text == "")
+            {
+                lblSalida.Text = "Debe ingresar un código para buscar";
+            }
+            else
+            {
+                posicion = listaProductos.BuscarPorCodigo(txtCodigo.Text);
+                if(posicion == -1)
+                {
+                    lblSalida.Text = "No se encontró el producto con código: " + txtCodigo.Text;
+                }
+                else
+                {
+                    txtCodigo.Text = listaProductos.Lista[posicion].Codigo;
+                    txtNombre.Text = listaProductos.Lista[posicion].Nombre;
+                    txtPrecio.Text = listaProductos.Lista[posicion].Precio.ToString();
+                    txtCantidad.Text = listaProductos.Lista[posicion].Cantidad.ToString();
+                }
+            }
+            return posicion;
         }
     }
 }
