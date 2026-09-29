@@ -4,8 +4,14 @@ using System.Text;
 
 namespace CRUDProductos.BA
 {
+    /// <summary>
+    /// Clase que representa una lista de productos y proporciona métodos para agregar, listar, buscar y eliminar productos.
+    /// </summary>
     public class Productos
     {
+        /// <summary>
+        /// Lista de productos almacenados en un arreglo de tamaño fijo (10).
+        /// </summary>
         public Producto[] Lista { get; set; } = new Producto[10];
         
         private int UltimoRegistroCargado = -1;
@@ -43,8 +49,14 @@ namespace CRUDProductos.BA
             return listado;
         }
 
+        /// <summary>
+        /// Busca un producto por su código y devuelve su posición en la lista
+        /// </summary>
+        /// <param name="codigo"> Código del producto a buscar</param>
+        /// <returns>Posición del producto en la lista o -1 si no se encuentra</returns>
         public int BuscarPorCodigo(string codigo)
         {
+            // si devuelve -1 es que no encontró el producto
             int posicion = -1;
 
             //foreach (Producto item in Lista)
@@ -79,5 +91,7 @@ namespace CRUDProductos.BA
             }
             Lista[UltimoRegistroCargado] = null;
         }
+
+
     }
 }

@@ -1,5 +1,4 @@
 using CRUDProductos.BA;
-using Microsoft.VisualBasic;
 
 namespace CRUDProductos.FE
 {
@@ -9,6 +8,7 @@ namespace CRUDProductos.FE
         public frmCRUDProductos()
         {
             InitializeComponent();
+            Limpiar();
         }
 
         private void btAgregar_Click(object sender, EventArgs e)
@@ -20,6 +20,7 @@ namespace CRUDProductos.FE
             producto.Cantidad = Convert.ToInt32(txtCantidad.Text);
             listaProductos.Agregar(producto);
 
+            Limpiar();
             lblSalida.Text = listaProductos.Listar();
         }
 
@@ -30,12 +31,7 @@ namespace CRUDProductos.FE
 
         private void btLimpiar_Click(object sender, EventArgs e)
         {
-            txtCantidad.Text = "";
-            txtCodigo.Text = "";
-            txtNombre.Clear();
-            txtPrecio.Clear();
-
-            lblSalida.Text = "";
+            Limpiar();
         }
 
         private void btBuscar_Click(object sender, EventArgs e)
@@ -46,13 +42,13 @@ namespace CRUDProductos.FE
         private void btEliminar_Click(object sender, EventArgs e)
         {
             int posicion = BuscarPorCodigo();
-            string mensaje = "¿Está seguro que desea eliminar el producto con código: " 
+            string mensaje = "¿Está seguro que desea eliminar el producto con código: "
                                + listaProductos.Lista[posicion].Codigo
                                + "-"
                                + listaProductos.Lista[posicion].Nombre
                                + "?";
-            DialogResult resultado = MessageBox.Show(mensaje, 
-                            "Eliminar producto", 
+            DialogResult resultado = MessageBox.Show(mensaje,
+                            "Eliminar producto",
                             MessageBoxButtons.YesNo);
 
             if (resultado == DialogResult.Yes)
@@ -60,6 +56,11 @@ namespace CRUDProductos.FE
                 listaProductos.Eliminar(posicion);
                 lblSalida.Text = "Producto eliminado correctamente";
             }
+        }
+
+        private void btActualizar_Click(object sender, EventArgs e)
+        {
+
         }
 
         private int BuscarPorCodigo()
@@ -72,19 +73,41 @@ namespace CRUDProductos.FE
             else
             {
                 posicion = listaProductos.BuscarPorCodigo(txtCodigo.Text);
-                if(posicion == -1)
+                if (posicion == -1)
                 {
                     lblSalida.Text = "No se encontró el producto con código: " + txtCodigo.Text;
                 }
                 else
                 {
                     txtCodigo.Text = listaProductos.Lista[posicion].Codigo;
+                    txtCodigo.Enabled = false;
                     txtNombre.Text = listaProductos.Lista[posicion].Nombre;
                     txtPrecio.Text = listaProductos.Lista[posicion].Precio.ToString();
                     txtCantidad.Text = listaProductos.Lista[posicion].Cantidad.ToString();
+
+                    btActualizar.Enabled = true;
+                    btEliminar.Enabled = true;
+                    btAgregar.Enabled=false;
                 }
             }
             return posicion;
+        }
+
+        private void Limpiar()
+        {
+            txtCantidad.Text = "";
+            txtCodigo.Text = "";
+            txtNombre.Clear();
+            txtPrecio.Clear();
+
+            lblSalida.Text = "";
+
+            btActualizar.Enabled = false;
+            btEliminar.Enabled = false;
+            btAgregar.Enabled = true;
+
+            txtCodigo.Enabled = true;
+            txtCodigo.Focus();
         }
     }
 }

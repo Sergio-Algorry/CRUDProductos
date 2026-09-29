@@ -42,6 +42,7 @@
             btLimpiar = new Button();
             btBuscar = new Button();
             btEliminar = new Button();
+            btActualizar = new Button();
             SuspendLayout();
             // 
             // lblCodigo
@@ -122,7 +123,7 @@
             // lblSalida
             // 
             lblSalida.AutoSize = true;
-            lblSalida.Location = new Point(12, 141);
+            lblSalida.Location = new Point(24, 132);
             lblSalida.Name = "lblSalida";
             lblSalida.Size = new Size(0, 20);
             lblSalida.TabIndex = 9;
@@ -162,8 +163,9 @@
             // 
             // btEliminar
             // 
+            btEliminar.Enabled = false;
             btEliminar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btEliminar.Location = new Point(112, 93);
+            btEliminar.Location = new Point(224, 93);
             btEliminar.Name = "btEliminar";
             btEliminar.Size = new Size(94, 29);
             btEliminar.TabIndex = 13;
@@ -171,11 +173,24 @@
             btEliminar.UseVisualStyleBackColor = true;
             btEliminar.Click += btEliminar_Click;
             // 
+            // btActualizar
+            // 
+            btActualizar.Enabled = false;
+            btActualizar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btActualizar.Location = new Point(112, 93);
+            btActualizar.Name = "btActualizar";
+            btActualizar.Size = new Size(94, 29);
+            btActualizar.TabIndex = 14;
+            btActualizar.Text = "Actualizar";
+            btActualizar.UseVisualStyleBackColor = true;
+            btActualizar.Click += btActualizar_Click;
+            // 
             // frmCRUDProductos
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(640, 450);
+            Controls.Add(btActualizar);
             Controls.Add(btEliminar);
             Controls.Add(btBuscar);
             Controls.Add(btLimpiar);
@@ -212,5 +227,6 @@
         private Button btLimpiar;
         private Button btBuscar;
         private Button btEliminar;
+        private Button btActualizar;
     }
 }
