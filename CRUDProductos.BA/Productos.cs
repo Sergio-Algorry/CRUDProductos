@@ -5,7 +5,8 @@ using System.Text;
 namespace CRUDProductos.BA
 {
     /// <summary>
-    /// Clase que representa una lista de productos y proporciona métodos para agregar, listar, buscar y eliminar productos.
+    /// Clase que representa una lista de productos y proporciona métodos para agregar, 
+    /// listar, buscar y eliminar productos.
     /// </summary>
     public class Productos
     {
@@ -24,6 +25,11 @@ namespace CRUDProductos.BA
             UltimoRegistroCargado = nuevoRegistro;
         }
 
+        public void Actualizar(int posicion,Producto producto)
+        {
+            Lista[posicion] = producto;
+        }
+
         public string Listar()
         {
             string listado = "";
@@ -36,13 +42,17 @@ namespace CRUDProductos.BA
             {
                 if (producto != null)
                 {
-                    listado = listado 
-                        + producto.Codigo 
-                        + " - " 
-                        + producto.Nombre
-                        + " - "
-                        + producto.Cantidad.ToString()
+                    //listado = listado 
+                    //    + producto.Codigo 
+                    //    + " - " 
+                    //    + producto.Nombre
+                    //    + " - "
+                    //    + producto.Cantidad.ToString()
+                    //    + "\n";
+                    listado = listado
+                        + producto.RenglonResumido()
                         + "\n";
+
                 }
             }
 
@@ -90,6 +100,7 @@ namespace CRUDProductos.BA
                 Lista[i-1] = Lista[i];
             }
             Lista[UltimoRegistroCargado] = null;
+            UltimoRegistroCargado = UltimoRegistroCargado - 1;
         }
 
 

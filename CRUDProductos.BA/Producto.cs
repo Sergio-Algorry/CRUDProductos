@@ -11,9 +11,14 @@ namespace CRUDProductos.BA
         public int Cantidad { get; set; }
         public decimal Precio { get; set; }
 
-        public string Renglon()
+        public string RenglonCompleto()
         {
             return $"Código: {Codigo} - Nombre: {Nombre} - Precio: {Precio} - Cantidad: {Cantidad}";
+        }
+
+        public string RenglonResumido()
+        {
+            return $"{Codigo} - {Nombre} - {Precio} - {Cantidad}";
         }
     }
 }

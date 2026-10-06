@@ -5,6 +5,8 @@ namespace CRUDProductos.FE
     public partial class frmCRUDProductos : Form
     {
         Productos listaProductos = new Productos();
+        int posicion = -1;
+
         public frmCRUDProductos()
         {
             InitializeComponent();
@@ -21,7 +23,7 @@ namespace CRUDProductos.FE
             listaProductos.Agregar(producto);
 
             Limpiar();
-            lblSalida.Text = listaProductos.Listar();
+            lblSalida.Text = $"Producto agregado {producto.Nombre} correctamente";
         }
 
         private void btListar_Click(object sender, EventArgs e)
@@ -54,21 +56,31 @@ namespace CRUDProductos.FE
             if (resultado == DialogResult.Yes)
             {
                 listaProductos.Eliminar(posicion);
+                Limpiar();
                 lblSalida.Text = "Producto eliminado correctamente";
             }
         }
 
         private void btActualizar_Click(object sender, EventArgs e)
         {
+            Producto producto = new Producto();
+            producto.Codigo = txtCodigo.Text;
+            producto.Nombre = txtNombre.Text;
+            producto.Precio = Convert.ToDecimal(txtPrecio.Text);
+            producto.Cantidad = Convert.ToInt32(txtCantidad.Text);
 
+            listaProductos.Actualizar(posicion, producto);
+
+            Limpiar();
+            lblSalida.Text = $"Producto actualizado {producto.Nombre} correctamente";
         }
 
         private int BuscarPorCodigo()
         {
-            int posicion = -1;
             if (txtCodigo.Text == "")
             {
                 lblSalida.Text = "Debe ingresar un código para buscar";
+                posicion = -1;
             }
             else
             {
@@ -80,7 +92,6 @@ namespace CRUDProductos.FE
                 else
                 {
                     txtCodigo.Text = listaProductos.Lista[posicion].Codigo;
-                    txtCodigo.Enabled = false;
                     txtNombre.Text = listaProductos.Lista[posicion].Nombre;
                     txtPrecio.Text = listaProductos.Lista[posicion].Precio.ToString();
                     txtCantidad.Text = listaProductos.Lista[posicion].Cantidad.ToString();
@@ -88,6 +99,9 @@ namespace CRUDProductos.FE
                     btActualizar.Enabled = true;
                     btEliminar.Enabled = true;
                     btAgregar.Enabled=false;
+
+                    txtCodigo.Enabled = false;
+                    txtNombre.Focus();
                 }
             }
             return posicion;
