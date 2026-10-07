@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CRUDProductos.Shared.ENUM;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -20,6 +21,8 @@ namespace CRUDProductos.BA
         public void Agregar(Producto producto)
         {
             int nuevoRegistro = UltimoRegistroCargado + 1;
+
+            producto.EstadoRegistro = EnumEstadoRegistro.Activo;
 
             Lista[nuevoRegistro] = producto;
             UltimoRegistroCargado = nuevoRegistro;
@@ -53,6 +56,21 @@ namespace CRUDProductos.BA
                         + producto.RenglonResumido()
                         + "\n";
 
+                }
+            }
+
+            return listado;
+        }
+
+        public string ListarActivos()
+        { 
+            string listado = "";
+
+            foreach (Producto item in Lista)
+            {
+                if (item != null && item.EstadoRegistro == EnumEstadoRegistro.Activo)
+                {
+                    listado = listado + item.RenglonResumido() + "\n";
                 }
             }
 
@@ -103,6 +121,9 @@ namespace CRUDProductos.BA
             UltimoRegistroCargado = UltimoRegistroCargado - 1;
         }
 
-
+        public void CambiarEstado(int posicion, EnumEstadoRegistro nuevoEstado)
+        {
+            Lista[posicion].EstadoRegistro = nuevoEstado;
+        }
     }
 }

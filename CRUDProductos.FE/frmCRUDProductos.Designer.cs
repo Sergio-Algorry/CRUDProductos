@@ -43,6 +43,8 @@
             btBuscar = new Button();
             btEliminar = new Button();
             btActualizar = new Button();
+            btListaActivos = new Button();
+            btDesactiva = new Button();
             SuspendLayout();
             // 
             // lblCodigo
@@ -131,11 +133,11 @@
             // btListar
             // 
             btListar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btListar.Location = new Point(324, 93);
+            btListar.Location = new Point(398, 132);
             btListar.Name = "btListar";
-            btListar.Size = new Size(94, 29);
+            btListar.Size = new Size(109, 29);
             btListar.TabIndex = 10;
-            btListar.Text = "Listar";
+            btListar.Text = "Listar Todos";
             btListar.UseVisualStyleBackColor = true;
             btListar.Click += btListar_Click;
             // 
@@ -185,11 +187,36 @@
             btActualizar.UseVisualStyleBackColor = true;
             btActualizar.Click += btActualizar_Click;
             // 
+            // btListaActivos
+            // 
+            btListaActivos.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btListaActivos.Location = new Point(512, 132);
+            btListaActivos.Name = "btListaActivos";
+            btListaActivos.Size = new Size(112, 29);
+            btListaActivos.TabIndex = 15;
+            btListaActivos.Text = "Listar Activos";
+            btListaActivos.UseVisualStyleBackColor = true;
+            btListaActivos.Click += btListaActivos_Click;
+            // 
+            // btDesactiva
+            // 
+            btDesactiva.Enabled = false;
+            btDesactiva.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btDesactiva.Location = new Point(324, 93);
+            btDesactiva.Name = "btDesactiva";
+            btDesactiva.Size = new Size(94, 29);
+            btDesactiva.TabIndex = 16;
+            btDesactiva.Text = "Desactivar";
+            btDesactiva.UseVisualStyleBackColor = true;
+            btDesactiva.Click += btDesactiva_Click;
+            // 
             // frmCRUDProductos
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(640, 450);
+            Controls.Add(btDesactiva);
+            Controls.Add(btListaActivos);
             Controls.Add(btActualizar);
             Controls.Add(btEliminar);
             Controls.Add(btBuscar);
@@ -228,5 +255,7 @@
         private Button btBuscar;
         private Button btEliminar;
         private Button btActualizar;
+        private Button btListaActivos;
+        private Button btDesactiva;
     }
 }

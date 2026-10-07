@@ -1,4 +1,5 @@
 using CRUDProductos.BA;
+using CRUDProductos.Shared.ENUM;
 
 namespace CRUDProductos.FE
 {
@@ -75,6 +76,16 @@ namespace CRUDProductos.FE
             lblSalida.Text = $"Producto actualizado {producto.Nombre} correctamente";
         }
 
+        private void btListaActivos_Click(object sender, EventArgs e)
+        {
+            lblSalida.Text = listaProductos.ListarActivos();
+        }
+
+        private void btDesactiva_Click(object sender, EventArgs e)
+        {
+            listaProductos.CambiarEstado(posicion, EnumEstadoRegistro.Inactivo);
+        }
+
         private int BuscarPorCodigo()
         {
             if (txtCodigo.Text == "")
@@ -98,7 +109,8 @@ namespace CRUDProductos.FE
 
                     btActualizar.Enabled = true;
                     btEliminar.Enabled = true;
-                    btAgregar.Enabled=false;
+                    btDesactiva.Enabled = true;
+                    btAgregar.Enabled = false;
 
                     txtCodigo.Enabled = false;
                     txtNombre.Focus();
@@ -118,6 +130,7 @@ namespace CRUDProductos.FE
 
             btActualizar.Enabled = false;
             btEliminar.Enabled = false;
+            btDesactiva.Enabled = false;
             btAgregar.Enabled = true;
 
             txtCodigo.Enabled = true;

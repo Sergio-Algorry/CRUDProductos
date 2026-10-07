@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="CRUDProductos.BA/CRUDProductos.BA.csproj" />
   <Project Path="CRUDProductos.FE/CRUDProductos.FE.csproj" />
+  <Project Path="CRUDProductos.Shared/CRUDProductos.Shared.csproj" Id="64e6684e-42d4-41d3-ba56-350bde756f74" />
 </Solution>
